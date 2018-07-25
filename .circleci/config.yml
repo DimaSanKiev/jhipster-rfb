@@ -54,9 +54,7 @@ jobs:
           path: ~/junit
 
       - store_artifacts:
-          path: ~
-
-          /junit
+          path: ~/junit
 
       - run:
           name: install yarn
