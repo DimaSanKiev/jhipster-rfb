@@ -10,4 +10,4 @@ CMD echo "The application will start in ${JHIPSTER_SLEEP}s..." && \
 
 EXPOSE 8080
 
-ADD *.war /app.war
+ADD *.war /app.war/
