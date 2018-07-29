@@ -34,8 +34,8 @@ jobs:
           - v1-dependencies-
 
       - run:
-        - chmod +x gradle
-        - gradle dependencies
+        chmod +x gradle
+        gradle dependencies
 
       - save_cache:
           paths:
