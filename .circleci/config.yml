@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: dimasankiev/circleci_build
+      - image: springframeworkguru/circleci_build
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -58,7 +58,7 @@ jobs:
 
       - run:
           name: install yarn
-          command: sudo npm install -g yarn --stacktrace
+          command: sudo npm install -g yarn
 
       - run:
           name: Build Docker Image
