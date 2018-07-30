@@ -1,5 +1,6 @@
 package com.rfb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A RfbUser.
@@ -34,6 +38,11 @@ public class RfbUser implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private RfbLocation homeLocation;
+
+    @OneToMany(mappedBy = "rfbUser")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<RfbEventAttendance> rfbEventAttendances = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -68,6 +77,31 @@ public class RfbUser implements Serializable {
 
     public void setHomeLocation(RfbLocation rfbLocation) {
         this.homeLocation = rfbLocation;
+    }
+
+    public Set<RfbEventAttendance> getRfbEventAttendances() {
+        return rfbEventAttendances;
+    }
+
+    public RfbUser rfbEventAttendances(Set<RfbEventAttendance> rfbEventAttendances) {
+        this.rfbEventAttendances = rfbEventAttendances;
+        return this;
+    }
+
+    public RfbUser addRfbEventAttendance(RfbEventAttendance rfbEventAttendance) {
+        this.rfbEventAttendances.add(rfbEventAttendance);
+        rfbEventAttendance.setRfbUser(this);
+        return this;
+    }
+
+    public RfbUser removeRfbEventAttendance(RfbEventAttendance rfbEventAttendance) {
+        this.rfbEventAttendances.remove(rfbEventAttendance);
+        rfbEventAttendance.setRfbUser(null);
+        return this;
+    }
+
+    public void setRfbEventAttendances(Set<RfbEventAttendance> rfbEventAttendances) {
+        this.rfbEventAttendances = rfbEventAttendances;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

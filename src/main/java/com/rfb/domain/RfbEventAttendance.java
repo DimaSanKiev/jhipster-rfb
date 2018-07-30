@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -36,8 +34,7 @@ public class RfbEventAttendance implements Serializable {
     @ManyToOne
     private RfbEvent rfbEvent;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private RfbUser rfbUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
