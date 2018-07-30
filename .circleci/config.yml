@@ -58,7 +58,7 @@ jobs:
 
       - run:
           name: install yarn
-          command: npm install -g yarn
+          command: sudo npm install -g yarn --stacktrace
 
       - run:
           name: Build Docker Image
